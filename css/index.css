@@ -1,0 +1,28 @@
+#map {
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom:0;
+}
+
+.layer {
+  height: 10px;
+  width: 10px;
+}
+
+.trail{
+  background-color: rgb(77,255,5);
+}
+
+.route1 {
+  background-color: rgb(23,184,254) ;
+}
+
+.route2 {
+  background-color: rgb(253,154,8);
+}
+
+.route3 {
+  background-color: rgb(251,11,18);
+}

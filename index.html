@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Chippewa Valley Bicycle Routes</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script type="text/javascript" src="data/routes.topo.json"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script type='text/javascript'>
+    window.onload = function () {
+
+      L.TopoJSON = L.GeoJSON.extend({
+        addData: function(jsonData) {
+          if (jsonData.type === "Topology") {
+            for (key in jsonData.objects) {
+              geojson = topojson.feature(jsonData, jsonData.objects[key]);
+              L.GeoJSON.prototype.addData.call(this, geojson);
+            }
+          }
+          else {
+            L.GeoJSON.prototype.addData.call(this, jsonData);
+          }
+        }
+      });
+
+      var basemap = new L.StamenTileLayer("terrain");
+
+      var trail_layer = new L.TopoJSON();
+      trail_layer.addData(trails)
+
+      var route_loc1 = new L.TopoJSON();
+      route_loc1.addData(routes_loc1)
+      var route_loc2 = new L.TopoJSON();
+      route_loc2.addData(routes_loc2)
+      var route_loc3 = new L.TopoJSON();
+      route_loc3.addData(routes_loc3)
+      route_loc1.setStyle({
+        "color": "rgb(23,184,254)",
+        "weight": 4,
+        "opacity": .75
+      })
+      route_loc2.setStyle({
+        "color": "rgb(253,154,8)",
+        "weight": 4,
+        "opacity": .75
+      })
+      route_loc3.setStyle({
+        "color": "rgb(251,11,18)",
+        "weight": 4,
+        "opacity": .75
+      })
+
+      trail_layer.setStyle({
+        "color": "rgb(77,255,5)",
+        "weight": 4,
+        "opacity": .75
+      })
+
+      var map = L.map('map', {
+        center: [44.83, -91.483],
+        zoom: 12,
+        layers: [basemap, trail_layer, route_loc1, route_loc2, route_loc3]
+      });
+
+      var overlays = {
+        "<img src='1x1.png' class='trail layer'/> Bike Trail": trail_layer,
+        "<img src='1x1.png' class='route1 layer'/> Bike Route - Best": route_loc1,
+        "<img src='1x1.png' class='route2 layer'/> Bike Route - Better": route_loc2,
+        "<img src='1x1.png' class='route3 layer'/> Bike Route - Good": route_loc3
+      };
+
+      L.control.layers(null, overlays, {collapsed: false}).addTo(map);
+
+    };
+  </script>
+</body>
+</html>
+
