@@ -7,9 +7,12 @@
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y git
 
 ## Install Node Version Manager w/recent node version
+## Basic install
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+## Source nvm so it works right away without relogging in
+. /root/.nvm/nvm.sh
+## Install & use / default a recent node version
 nvm install v6.1.0
-nvm use v6.1.0
 
 # Install webpack & it's dev-server with global access
 npm install webpack -g
