@@ -27,7 +27,11 @@ sudo apt-get install -y git oracle-java8-installer android-studio build-essentia
 
 # Setup repository
 git clone https://github.com/codeforeauclaire/bikeroutes.git /root/bikeroutes
+## Checkout branch (remove this later)
 (cd /root/bikeroutes && git checkout react)
+## Install dependencies from package.json
+(cd /root/bikeroutes/react-native/project && npm install --save)
+
 
 # Setup VNC Server
 echo " THIS STUFF HERE IS A WIP, FIX IT!"
@@ -57,8 +61,5 @@ exit
 # Install webpack & it's dev-server with global access
 npm install webpack -g
 npm install webpack-dev-server -g
-
-# Install dependencies from package.json
-(cd /root/bikeroutes/react && npm install --save)
 
 } # this ensures the entire script is downloaded and run #
