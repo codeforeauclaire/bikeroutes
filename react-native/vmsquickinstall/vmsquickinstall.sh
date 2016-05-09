@@ -30,12 +30,12 @@ git clone https://github.com/codeforeauclaire/bikeroutes.git /root/bikeroutes
 
 # Setup VNC Server
 echo " THIS STUFF HERE IS A WIP, FIX IT!"
-cp /root/bikeroutes/react-native/xstartup ~/.vnc/xstartup
+chmod +x /root/bikeroutes/react-native/vmsquickinstall/setvncserverpassword
+/root/bikeroutes/react-native/vmsquickinstall/setvncserverpassword
+cp /root/bikeroutes/react-native/vmsquickinstall/xstartup ~/.vnc/xstartup
 sudo chmod +x ~/.vnc/xstartup
-cp /root/bikeroutes/react-native/vncserver /etc/init.d/vncserver
+cp /root/bikeroutes/react-native/vmsquickinstall/vncserver /etc/init.d/vncserver
 sudo chmod +x /etc/init.d/vncserver
-chmod +x /root/bikeroutes/react-native/setvncserverpassword
-/root/bikeroutes/react-native/setvncserverpassword
 sudo service vncserver restart
 sudo update-rc.d vncserver defaults
 
