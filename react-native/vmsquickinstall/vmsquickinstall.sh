@@ -6,9 +6,10 @@
 # * Java 8 http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 # * Android Studio https://paolorotolo.github.io/android-studio/
 # ** https://github.com/PaoloRotolo/android-studio/issues/12
+# ** https://stackoverflow.com/questions/29241640/errorunable-to-run-mksdcard-sdk-tool-in-ubuntu
 # * React https://facebook.github.io/react-native/docs/getting-started.html
 # VNC https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-14-04
-## VNC scripted password https://askubuntu.com/questions/328240/assign-vnc-password-using-script
+# * VNC scripted password https://askubuntu.com/questions/328240/assign-vnc-password-using-script
 
 # Install from package manager
 ## Add repositories to install stuff
@@ -22,7 +23,7 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | su
 ### Workaround Android Studio folder missing errors
 sudo mkdir /opt
 ## Actual installs
-sudo apt-get install -y git oracle-java8-installer android-studio build-essential xfce4 xfce4-goodies tightvncserver expect
+sudo apt-get install -y git oracle-java8-installer android-studio build-essential xfce4 xfce4-goodies tightvncserver expect lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6
 
 # Setup repository
 git clone https://github.com/codeforeauclaire/bikeroutes.git /root/bikeroutes
