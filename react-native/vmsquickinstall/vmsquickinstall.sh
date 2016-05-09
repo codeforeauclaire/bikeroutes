@@ -2,9 +2,6 @@
 
 { # this ensures the entire script is downloaded and run #
 
-# Config
-VNCPASS="code4ec"
-
 # Installation references
 # * Java 8 http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 # * Android Studio https://paolorotolo.github.io/android-studio/
@@ -19,25 +16,28 @@ sudo add-apt-repository -y ppa:webupd8team/java				# Java8
 sudo add-apt-repository -y ppa:paolorotolo/android-studio	# Android Studio
 ## Update everything
 sudo apt-get update && sudo apt-get upgrade -y
-## Prepase for installation
+## Prepare for installation
 ### Prevent java installation propts
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 ### Workaround Android Studio folder missing errors
 sudo mkdir /opt
-#sudo mkdir /opt/android-studio
 ## Actual installs
 sudo apt-get install -y git oracle-java8-installer android-studio build-essential xfce4 xfce4-goodies tightvncserver expect
 
-# Set VNC password
-/usr/bin/expect <<EOF
-spawn "/usr/bin/vncpasswd"
-expect "Password:"
-send "$VNCPASS\r"
-expect "Verify:"
-send "$VNCPASS\r"
-expect eof
-exit
-EOF
+# Setup repository
+git clone https://github.com/codeforeauclaire/bikeroutes.git /root/bikeroutes
+(cd /root/bikeroutes && git checkout react)
+
+# Setup VNC Server
+echo " THIS STUFF HERE IS A WIP, FIX IT!"
+cp /root/bikeroutes/react-native/xstartup ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup
+cp /root/bikeroutes/react-native/vncserver /etc/init.d/vncserver
+sudo chmod +x /etc/init.d/vncserver
+chmod +x /root/bikeroutes/react-native/setvncserverpassword
+/root/bikeroutes/react-native/setvncserverpassword
+sudo service vncserver restart
+sudo update-rc.d vncserver defaults
 
 ## Install Node Version Manager w/recent node version
 ## Basic install
@@ -50,17 +50,12 @@ nvm install v6.1.0
 # React native command line interface
 npm install -g react-native-cli
 
-# Setup repository
-git clone https://github.com/codeforeauclaire/bikeroutes.git /root/bikeroutes
-
 echo "Exiting...not sure we need the rest..."
 exit
 
 # Install webpack & it's dev-server with global access
 npm install webpack -g
 npm install webpack-dev-server -g
-
-(cd /root/bikeroutes && git checkout react)
 
 # Install dependencies from package.json
 (cd /root/bikeroutes/react && npm install --save)
