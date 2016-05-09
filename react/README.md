@@ -5,4 +5,4 @@
   1. Run app
    1. `(cd ~/bikeroutes/react && ./bin/run-dev-server)`
    1. Load http://{vms-ip}:8080 in your browser
-   1. Edit a .jsx file >> restart ./bin/run-dev-server >> see changes in your browser
+   1. Edit a .jsx file >> see changes in your browser
