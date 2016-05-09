@@ -2,11 +2,16 @@
 
 { # this ensures the entire script is downloaded and run #
 
+# Config
+VNCPASS="code4ec"
+
 # Installation references
 # * Java 8 http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 # * Android Studio https://paolorotolo.github.io/android-studio/
 # ** https://github.com/PaoloRotolo/android-studio/issues/12
 # * React https://facebook.github.io/react-native/docs/getting-started.html
+# VNC https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-14-04
+## VNC scripted password https://askubuntu.com/questions/328240/assign-vnc-password-using-script
 
 # Install from package manager
 ## Add repositories to install stuff
@@ -21,7 +26,18 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | su
 sudo mkdir /opt
 #sudo mkdir /opt/android-studio
 ## Actual installs
-sudo apt-get install -y git oracle-java8-installer android-studio build-essential
+sudo apt-get install -y git oracle-java8-installer android-studio build-essential xfce4 xfce4-goodies tightvncserver expect
+
+# Set VNC password
+/usr/bin/expect <<EOF
+spawn "/usr/bin/vncpasswd"
+expect "Password:"
+send "$VNCPASS\r"
+expect "Verify:"
+send "$VNCPASS\r"
+expect eof
+exit
+EOF
 
 ## Install Node Version Manager w/recent node version
 ## Basic install
