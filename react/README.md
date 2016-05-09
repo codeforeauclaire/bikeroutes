@@ -2,7 +2,9 @@
 
  1. Create a new Digital Ocean Ubuntu 14.04.4 machine >> SSH in >> Run (or read) vms quick install
   1. `curl -L -o- https://rawgit.com/codeforeauclaire/bikeroutes/react/react/vmsquickinstall.sh | bash`
-  1. Run app
-   1. `(cd ~/bikeroutes/react && ./bin/run-dev-server)`
-   1. Load http://{vms-ip}:8080/webpack-dev-server/ in your browser
-   1. Edit a .jsx file >> see changes in your browser
+ 1. Prepare to run npm scripts installed by and with nvm (or you can disconnect and reconnect to the server)
+  1. `. /root/.nvm/nvm.sh`
+ 1. Run app
+  1. `(cd ~/bikeroutes/react && ./bin/run-dev-server)`
+  1. Load http://{vms-ip}:8080/webpack-dev-server/ in your browser
+  1. Edit a .jsx file >> see changes in your browser
