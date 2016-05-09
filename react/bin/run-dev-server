@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Config: Calculated
+# SCRIPT_PATH From SO @ https://goo.gl/JvL92M
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_PATH="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+# Get into project path
+cd $SCRIPT_PATH/../
+
+# Run
+webpack-dev-server

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+## Config: Calculated
+# SCRIPT_PATH From SO @ https://goo.gl/JvL92M
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_PATH="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+# Get into project path
+cd $SCRIPT_PATH/../
+
+# Clear old production code
+if [ -d "build" ]; then
+	(cd ./build && rm -rf *)
+fi
+
+# Pack it
+webpack main.js --output-path build --module-bind 'js=babel-loader'
+
+# Entry for web server (nginx, apache, ...)
+cp index.html ./build/
+
+# Tell user what's going on
+echo
+echo
+echo
+echo "Built in ./build/ (Host it somewhere like a GH page or ...)"
