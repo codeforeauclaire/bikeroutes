@@ -27,7 +27,8 @@ Full screen map
   * Industry leaning this way
  * Specific
   * Option 1: [lelandrichardson/react-native-maps (Other Overlays)](https://github.com/lelandrichardson/react-native-maps)
-  * Option 2: ??? Research more ???
+  * Option 2: [https://github.com/mapbox/react-native-mapbox-gl](https://github.com/mapbox/react-native-mapbox-gl) Mapbox platform is awesome! I haven't used this project yet but if it is anything like their other tools it will rock. The [free licensing tier](https://www.mapbox.com/pricing/) would give us 50,000 mobile users/month, so should be good there.
+  * Option 3: ??? Research more ???
 
 [GitHub Pages](https://pages.github.com/)
  * Why
