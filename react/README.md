@@ -1,3 +1,7 @@
+# Bikeroutes :: React
+
+Defunct and possibly won't support in favor of react-native.  Left here in case we need a web side to match to apps build with react-native.
+
 ## VMS Easy setup development environment
 
 Use these instructions to setup a temporary* development environment of this project.

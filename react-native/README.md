@@ -1,3 +1,7 @@
+# Bikeroutes :: React-Native
+
+Displays bike route information via a react native application that works on both iOS and Android.
+
 ## VMS Easy setup development environment
 
 Use these instructions to setup a temporary* development environment of this project.
