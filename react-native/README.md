@@ -2,7 +2,9 @@
 
 Displays bike route information via a react native application that works on both iOS and Android.
 
-## VMS Easy setup development environment [WORK IN PROGRESS]
+## VMS Easy setup development environment
+
+### WORK IN PROGRESS
 
 Use these instructions to setup a temporary* development environment of this project.
 
