@@ -5,12 +5,14 @@ Displays bike route information via a react native application that works on bot
 ## VMS Easy setup development environment
 
 ### WORK IN PROGRESS
-
-TODO:
 - [x] Make server connectable via VNC
 - [ ] Make server connectable via VNC in the browser
 - [ ] Make these instructions actually work
 - [ ] Change these to instructions to forking
+- [ ] Cleanup other formatting junk in these instructions
+
+
+### Instructions
 
 Use these instructions to setup a temporary* development environment of this project.
 
