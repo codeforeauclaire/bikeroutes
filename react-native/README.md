@@ -6,6 +6,12 @@ Displays bike route information via a react native application that works on bot
 
 ### WORK IN PROGRESS
 
+TODO:
+- [x] Make server connectable via VNC
+- [ ] Make server connectable via VNC in the browser
+- [ ] Make these instructions actually work
+- [ ] Change these to instructions to forking
+
 Use these instructions to setup a temporary* development environment of this project.
 
 1. Create a new [Virtual Machine](http://vms.codeforeauclaire.org/) (1gb+ recommended) >> SSH in >> Run vms quick install:
