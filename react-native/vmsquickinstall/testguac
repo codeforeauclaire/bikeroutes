@@ -1,13 +1,16 @@
 #!/bin/bash
+
+# Config
 IP=$1
+
 # Copy script to server
-scp guac root@$IP:/root/guac
+scp guacdoc root@$IP:/root/guacdoc
 
 # Make executable on server
-ssh root@$IP chmod +x /root/guac
+ssh root@$IP chmod +x /root/guacdoc
 
 # Run it on server
-ssh root@$IP /root/guac
+ssh root@$IP /root/guacdoc
 
 # Connect to server to try stuff
 ssh root@$IP
