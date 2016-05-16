@@ -8,3 +8,6 @@ ssh root@$IP chmod +x /root/guac
 
 # Run it on server
 ssh root@$IP /root/guac
+
+# Connect to server to try stuff
+ssh root@$IP
