@@ -22,8 +22,8 @@ docker run --name some-guacd -d glyptodon/guacd
 docker run --rm glyptodon/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
 
 
-# Client
-docker run --name some-guac-client -d glyptodon/guacamole
+# Client (TODO: Get mysql installed first)
+#docker run --name some-guac-client -d glyptodon/guacamole
 # docker logs some-guac-client # Confirms it's working
 
 
