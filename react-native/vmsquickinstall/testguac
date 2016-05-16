@@ -1,0 +1,10 @@
+#!/bin/bash
+IP=$1
+# Copy script to server
+scp guac root@$IP:/root/guac
+
+# Make executable on server
+ssh root@$IP chmod +x /root/guac
+
+# Run it on server
+ssh root@$IP /root/guac
