@@ -2,24 +2,38 @@
 
 # THIS IS A WORK IN PROGRESS, AND PROBABLY WON'T WORK UNTIL THIS COMMENT IS REMOVED
 
+#Config
+MYSQL_ROOT_PASS="unsecure"
+MYSQL_GUAC_DB="guacamole_db"
+MYSQL_GUAC_USER="guacamole_user"
+MYSQL_GUAC_PASS="unsecure"
+
 # Install docker
 # * https://docs.docker.com/engine/installation/linux/ubuntulinux/
-apt-get update
-apt-get install apt-transport-https ca-certificates
+apt-get update -y
+apt-get install -y apt-transport-https ca-certificates
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
-apt-get update
+apt-get update -y
 apt-get purge lxc-docker
 # apt-cache policy docker-engine
-sudo apt-get install linux-image-extra-$(uname -r) apparmor docker-engine
+sudo apt-get install -y linux-image-extra-$(uname -r) apparmor docker-engine
 #sudo service docker start
 
 # Guac server
 docker run --name some-guacd -d glyptodon/guacd
 # docker logs some-guacd # Confirms it's working
 
-# MySQL
-docker run --rm glyptodon/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+# MySQL [CURRENTLY WORKING ON]
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASS -d mysql:5.7.12
+#apt-get install -y mysql-client
+## Create database, create a user, and grant privledges to that user
+docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD -e"CREATE DATABASE '$MYSQL_GUAC_DB';"'
+docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD -e"CREATE USER '$MYSQL_GUAC_USER' IDENTIFIED BY '$MYSQL_GUAC_PASS';"'
+docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD -e"GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_GUAC_USER'@'localhost';"'
+# docker logs some-mysql # Confirms it's working
+docker run --rm glyptodon/guacamole /opt/guacamole/bin/initdb.sh --mysql > /root/initdb.sql
+# TODO: Figure out how to get this in there
 
 
 # Client (TODO: Get mysql installed first)
